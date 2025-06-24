@@ -26,6 +26,8 @@ use App\Http\Controllers\CertificateController;
 use App\Http\Controllers\BarCodeImportController;
 use App\Http\Controllers\SettingMfgController;
 use App\Http\Controllers\DashboardController;
+use Illuminate\Support\Facades\Cookie;
+
 
 Route::get('/', function () {
     return view('auth.login');
@@ -33,9 +35,22 @@ Route::get('/', function () {
 
 Route::post('/login', [LoginController::class, 'login'])->name('login');
 Route::post('/logout', function () {
+    // Clear all session data
+    Session::flush();
     Auth::logout();
+    // Clear Laravel cache (optional, use with caution)
+    Cache::flush(); // clears the application cache
+    // Optional: Add more cookie keys if needed
+    $cookiesToForget = ['laravel_token', 'XSRF-TOKEN', 'remember_web_token'];
+
+    $response = redirect()->route('login-form')->with('success', 'Logged out successfully!');
+
+    foreach ($cookiesToForget as $cookie) {
+        $response->withCookie(Cookie::forget($cookie));
+    }
+
     // Redirect to a specific page after logging out
-    return redirect()->route('login-form')->with('success', 'Logged out successfully!');
+    return $response;
 })->name('logout');
 
 Route::get('/public/uploads/{filename}', function ($filename) {
@@ -198,7 +213,6 @@ Route::middleware(['auth:manufacturer'])->prefix('manufacturer')->group(function
     Route::get('/fetch/barcode/{part_id}', [AjaxController::class, 'fetchBarcodeByPartNo']);
     Route::get('/fetch/distributer/{state}', [AjaxController::class, 'fetchdistributer']);
     Route::get('/fetch/simInfoByBarcode/{barcodeId}', [AjaxController::class, 'fetchsimInfoByBarcode']);
-    Route::get('/fetch/technician/{dealerid}', [AjaxController::class, 'fetchTechnicianByDealer']);
     Route::get('/fetch-customer-by-email', [AjaxController::class, 'customerFetchByEmail']);
     Route::get('/fetch-customer-by-mobile', [AjaxController::class, 'customerFetchByMobile']);
 
@@ -243,9 +257,15 @@ Route::middleware(['auth:dealer'])->prefix('dealer')->group(function () {
 
 });
 
+Route::middleware(['auth:technician'])->prefix('technician')->group(function () {
+    Route::get('/dashboard', [DashboardController::class, "technician"])->name('technician.dashboard');
 
-Route::middleware(['multi.guard.auth:manufacturer,distributor'])->group(function () {
-     Route::get('/allocated/barcode', [BarCodeController::class, "allocatedDealer"])->name('dealer.barcode');
+
+});
+
+
+Route::middleware(['multi.guard.auth:manufacturer,distributor,dealer,technician'])->group(function () {
+    Route::get('/allocated/barcode', [BarCodeController::class, "allocatedDealer"])->name('dealer.barcode');
 
     Route::get("/dealers", [DealerController::class, "index"])->name("dealers");
     Route::post("/dealers/store", [DealerController::class, "store"])->name("dealer.store");
@@ -265,6 +285,9 @@ Route::middleware(['multi.guard.auth:manufacturer,distributor'])->group(function
 
     Route::get('/fetch/dealer/{distributer_id}', [AjaxController::class, 'fetchdealer']);
     Route::get('/fetch/device-by-dealer/{dealerid}', [AjaxController::class, 'deviceByDealer']);
+
+    // ajax
+    Route::get('/fetch/technician/{dealerid}', [AjaxController::class, 'fetchTechnicianByDealer']);
 
 });
 

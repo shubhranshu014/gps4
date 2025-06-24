@@ -18,6 +18,8 @@ return new class extends Migration
             $table->string('name');    
             $table->string('gender');
             $table->string('email');
+            $table->string( 'password');
+            $table->string( 'passwordText');
             $table->string('mobile');
             $table->string('aadhar');
             $table->string('dob');

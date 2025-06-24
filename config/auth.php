@@ -60,6 +60,10 @@ return [
             'driver' => 'session',
             'provider' => 'dealers',
         ],
+        'technician' => [
+            'driver' => 'session',
+            'provider' => 'technicians',
+        ],
         'api' => [
             'driver' => 'sanctum',
             'provider' => 'api',
@@ -107,6 +111,10 @@ return [
         'dealers' => [
             'driver' => 'eloquent',
             'model' => env('AUTH_MODEL', App\Models\Dealer::class),
+        ],
+        'technicians' => [
+            'driver' => 'eloquent',
+            'model' => env('AUTH_MODEL', App\Models\Technician::class),
         ],
         'api' =>[
             'driver' => 'eloquent',

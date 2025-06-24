@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 
+use App\Models\Technician;
 use Illuminate\Http\Request;
 use App\Models\Subscription;
 use App\Models\MapDevice;
@@ -20,7 +21,8 @@ class DeviceController extends Controller
         // $subscriptions = Subscription::where("mfg_id", Auth('distributor')->user()->manuf_id)->get();
 
         if (Auth::guard('manufacturer')->check()) {
-            $subscriptions = Subscription::where("mfg_id", auth('manufacturer')->user()->id)->get();
+            $manufacturerId = auth('manufacturer')->user()->id;
+            $subscriptions = Subscription::where("mfg_id", $manufacturerId)->get();
             $layout = 'layouts.manufacturer';
             $distributors = Distributor::where('manuf_id', auth('manufacturer')->user()->id)->get();
 
@@ -38,10 +40,11 @@ class DeviceController extends Controller
                 }
             }
 
-            return view('backend.device.map')->with(compact('subscriptions', 'mapDevices','layout'));
+            return view('backend.device.map')->with(compact('subscriptions', 'mapDevices', 'layout'));
 
-        } else {
-            $dealers = Dealer::where('distributor_id', Auth('distributor')->user()->id)->get();
+        } elseif (Auth::guard('distributor')->check()) {
+            $distributorId = auth('distributor')->user()->id;
+            $dealers = Dealer::where('distributor_id', $distributorId)->get();
             $layout = 'layouts.distributor';
             $mapDevices = [];
             // Iterate over dealers
@@ -50,9 +53,25 @@ class DeviceController extends Controller
                 $mapDevices = array_merge($mapDevices, MapDeviceDetails::with('barcodes', 'dealer', 'cusmtomer')->where('dealer_id', $dealer->id)->get()->all());
             }
             $subscriptions = Subscription::where("mfg_id", auth('distributor')->user()->manuf_id)->get();
-            return view('backend.device.map')->with(compact('subscriptions', 'mapDevices','dealers','layout'));
+            return view('backend.device.map')->with(compact('subscriptions', 'mapDevices', 'dealers', 'layout'));
 
+        } elseif (Auth::guard('dealer')->check()) {
+            $dealerId = auth('dealer')->user()->id;
+            $dealer = Dealer::where('id', $dealerId)->first();
+            $layout = 'layouts.dealer';
+            $mapDevices = MapDeviceDetails::with('barcodes', 'dealer', 'cusmtomer')->where('dealer_id', Auth('dealer')->user()->id)->get();
+            $subscriptions = Subscription::where("mfg_id", $dealer->distributor->manuf_id)->get();
+            return view('backend.device.map')->with(compact('subscriptions', 'mapDevices', 'dealer', 'layout'));
+        } else {
+            $technicianId = auth('technician')->user()->id;
+            $layout = 'layouts.technician';
+            $technician = Technician::find($technicianId);
+            $dealer = Dealer::where('id', $technician->dealer_id)->first();
+            $mapDevices = MapDeviceDetails::with('barcodes', 'dealer', 'cusmtomer')->where('dealer_id', $technician->dealer_id)->get();
+            $subscriptions = Subscription::where("mfg_id", $dealer->distributor->manuf_id)->get();
+            return view('backend.device.map')->with(compact('subscriptions', 'mapDevices', 'dealer', 'layout'));
         }
+
     }
 
 

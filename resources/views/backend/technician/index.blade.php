@@ -131,6 +131,19 @@
                                     @enderror
                                 </div>
                             </div>
+                            @else
+                            <div class="mb-3 row">
+                                <div class="col-md-6">
+                                    <label class="form-label">Dealer</label>
+                                    <select name="dealer"
+                                        class="form-select-sm form-select @error('dealer') is-invalid @enderror" id="dealer">
+                                            <option value="{{ auth()->user()->id }}"  readonly>
+                                                {{ auth()->user()->business_name }}
+                                            </option>
+                                            </select>
+                                </div>
+                            </div>
+                                
                             @endif
                         <!-- Name, Gender, Email -->
                         <div class="mb-3 row">

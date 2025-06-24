@@ -14,7 +14,8 @@ class TechnicianController extends Controller
     {
         if (Auth::guard('manufacturer')->check()) {
             $layouts = 'layouts.manufacturer';
-            $distributor = Distributor::where("manuf_id", auth('manufacturer')->user()->id)->get();
+            $manufacturerId = auth('manufacturer')->user()->id;
+            $distributor = Distributor::where("manuf_id", $manufacturerId)->get();
             $dealer = [];
             foreach ($distributor as $key => $value) {
                 $dealer = Dealer::with('distributor')->where('distributor_id', $distributor[$key]->id)->get();
@@ -25,12 +26,19 @@ class TechnicianController extends Controller
                 $technician = Technician::with('dealer')->where('dealer_id', $dealer[$key]->id)->get();
             }
             return view("backend.technician.index")->with(compact('distributor', 'technician', 'layouts'));
-        } else {
+        } elseif (Auth::guard('distributor')->check()) {
+            $distributorId = auth('distributor')->user()->id;
             $layouts = 'layouts.distributor';
-            $dealer = Dealer::with('distributor')->where('distributor_id', auth('distributor')->user()->id)->get();
+            $dealer = Dealer::with('distributor')->whereIn('distributor_id', [$distributorId])->get();
             $dealerIds = $dealer->pluck('id');
-            $technician = Technician::with('dealer')->where('dealer_id', $dealerIds)->get();
-            return view("backend.technician.index")->with(compact('technician', 'layouts','dealer'));
+            $technician = Technician::with('dealer')->whereIn('dealer_id', $dealerIds)->get();
+            return view("backend.technician.index")->with(compact('technician', 'layouts', 'dealer'));
+        } else {
+            $dealerId = auth('dealer')->user()->id;
+            $layouts = 'layouts.dealer';
+            $dealer = Dealer::with('distributor')->where('id', $dealerId)->first();
+            $technician = Technician::with('dealer')->where('dealer_id', $dealerId)->get();
+            return view("backend.technician.index")->with(compact( 'layouts', 'technician', 'dealer'));
         }
 
 
@@ -58,15 +66,17 @@ class TechnicianController extends Controller
 
         $technician = new Technician();
         if (Auth::guard('manufacturer')->check()) {
-         $technician->dealer_id = $request->input('dealer');
-        }else {
+            $technician->dealer_id = $request->input('dealer');
+        } else {
             $technician->dealer_id = Auth('distributor')->user()->id;
             $technician->dealer_id = $request->input('dealer');
         }
-       
+
         $technician->name = $request->input('name');
         $technician->gender = $request->input('gender');
         $technician->email = $request->input('email');
+        $technician->password = $request['mobile_no'];
+        $technician->passwordText = $request['mobile_no'];
         $technician->mobile = $request->input('mobile_no');
         $technician->aadhar = $request->input('aadhar');
         $technician->dob = $request->input('dob');

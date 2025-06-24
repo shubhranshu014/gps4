@@ -1,17 +1,17 @@
 @extends($layout)
 @section('content')
-    <div class="row align-items-center"
+    <div class="align-items-center row"
         style="background: linear-gradient(135deg, #2a0b5a 0%, #1a0638 100%); padding: 12px 20px; border-radius: 8px; box-shadow: 0 4px 12px rgba(0,0,0,0.1);">
         <div class="col-md-6">
             <div class="d-flex align-items-center">
-                <i class="fas fa-map-marked-alt text-white fs-4 me-3"></i>
-                <h4 class="card-title text-white mb-0" style="font-weight: 600; letter-spacing: 0.5px;">Manage Map Devices
+                <i class="me-3 text-white fas fa-map-marked-alt fs-4"></i>
+                <h4 class="mb-0 text-white card-title" style="font-weight: 600; letter-spacing: 0.5px;">Manage Map Devices
                 </h4>
             </div>
         </div>
         <div class="col-md-6">
             <div class="d-flex justify-content-md-end justify-content-sm-start">
-                <button type="button" class="btn px-4 py-2 d-flex align-items-center btn-theme"
+                <button type="button" class="d-flex align-items-center px-4 py-2 btn btn-theme"
                     style=" 
                                                                                                                                                            border-radius: 6px;
                                                                                                                                                            font-weight: 500;
@@ -21,55 +21,55 @@
                     data-bs-toggle="modal" data-bs-target="#mapDevice"
                     onmouseover="this.style.transform='translateY(-1px)'; this.style.boxShadow='0 4px 12px rgba(106, 17, 203, 0.4)'"
                     onmouseout="this.style.transform='translateY(0)'; this.style.boxShadow='0 2px 8px rgba(106, 17, 203, 0.3)'">
-                    <i class="fas fa-plus-circle me-2"></i>
+                    <i class="me-2 fas fa-plus-circle"></i>
                     Map New Device
                 </button>
             </div>
         </div>
     </div>
     @if (Session::has('success'))
-        <div class="alert alert-success alert-dismissible fade show my-2" role="alert">
+        <div class="my-2 alert alert-success alert-dismissible fade show" role="alert">
             <strong> {{ Session::get('success') }}</strong>
             <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
         </div>
     @endif
     @if (Session::has('error'))
-        <div class="alert alert-danger alert-dismissible fade show my-2" role="alert">
+        <div class="my-2 alert alert-danger alert-dismissible fade show" role="alert">
             <strong> {{ Session::get('error') }}</strong>
             <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
         </div>
     @endif
     <div
-        class="d-flex flex-column flex-md-row justify-content-between align-items-md-center bg-light rounded-3 p-3 mb-4 shadow-sm my-2">
+        class="d-flex flex-column flex-md-row align-items-md-center justify-content-between bg-light shadow-sm my-2 mb-4 p-3 rounded-3">
         <!-- Title Section -->
         <div class="mb-3 mb-md-0">
             <h5 class="mb-0 text-primary fw-semibold">
-                <i class="fas fa-map-marked-alt me-2"></i>Mapped Devices List
+                <i class="me-2 fas fa-map-marked-alt"></i>Mapped Devices List
             </h5>
-            <p class="text-muted small mb-0 mt-1">Showing all mapped devices in your network</p>
+            <p class="mt-1 mb-0 text-muted small">Showing all mapped devices in your network</p>
         </div>
 
         <!-- Action Buttons -->
         <div class="d-flex flex-wrap gap-2">
-            <button type="button" class="btn btn-outline-primary d-flex align-items-center gap-2 px-3 py-2 action-btn"
+            <button type="button" class="d-flex align-items-center gap-2 px-3 py-2 btn-outline-primary btn action-btn"
                 data-bs-toggle="modal" data-bs-target="#exampleModal">
                 <i class="fas fa-file-pen"></i>
                 <span>Edit</span>
             </button>
 
-            <button type="button" class="btn btn-outline-info d-flex align-items-center gap-2 px-3 py-2 action-btn"
+            <button type="button" class="d-flex align-items-center gap-2 px-3 py-2 btn-outline-info btn action-btn"
                 data-bs-toggle="modal" data-bs-target="#exampleModal">
                 <i class="fas fa-eye"></i>
                 <span>View</span>
             </button>
 
-            <button type="button" class="btn btn-outline-success d-flex align-items-center gap-2 px-3 py-2 action-btn"
+            <button type="button" class="d-flex align-items-center gap-2 px-3 py-2 btn-outline-success btn action-btn"
                 data-bs-toggle="modal" data-bs-target="#certificates">
                 <i class="fas fa-file-signature"></i>
                 <span>Certificates</span>
             </button>
 
-            <button type="button" class="btn btn-outline-secondary d-flex align-items-center gap-2 px-3 py-2 action-btn"
+            <button type="button" class="d-flex align-items-center gap-2 px-3 py-2 btn-outline-secondary btn action-btn"
                 data-bs-toggle="modal" data-bs-target="#exampleModal">
                 <i class="fas fa-file-lines"></i>
                 <span>Documents</span>
@@ -118,7 +118,7 @@
             }
         }
     </style>
-    <div class="row my-2">
+    <div class="my-2 row">
         <div class="col-md-12">
             <table class="table table-striped">
                 <thead>
@@ -192,19 +192,19 @@
                     <form action="{{ route('map.device.store') }}" method="post" enctype="multipart/form-data">
                         <!-- RFC Header -->
                         @csrf
-                        <div class="border border-secondary rounded m-3">
+                        <div class="m-3 border border-secondary rounded">
                             <div class="bg-light p-2 border rounded-top">
-                                <h5 class="text-center mb-0">RFC Info</h5>
+                                <h5 class="mb-0 text-center">RFC Info</h5>
                             </div>
 
                             <!-- Form Body -->
-                            <div class="border rounded p-3">
+                            <div class="p-3 border rounded">
                                 <div class="row">
                                     @if (Auth::guard('manufacturer')->check())
                                         <!-- Country Dropdown -->
                                         <div class="form-group col-md-3">
-                                            <label for="country">Country<span class="badge text-danger">*</span></label>
-                                            <select name="country" class="form-select form-select-sm country">
+                                            <label for="country">Country<span class="text-danger badge">*</span></label>
+                                            <select name="country" class="form-select-sm form-select country">
                                                 <option disabled @selected(true)>Choose Country
                                                 </option>
                                                 <option value="china" @selected(old('country') == 'china')>China
@@ -213,46 +213,46 @@
                                                 </option>
                                             </select>
                                             @error('country')
-                                                <div class="invalid-feedback d-block">{{ $message }}</div>
+                                                <div class="d-block invalid-feedback">{{ $message }}</div>
                                             @enderror
                                         </div>
 
                                         <!-- State Dropdown -->
                                         <div class="form-group col-md-3">
-                                            <label for="state">State</label> <span class="badge text-danger">*</span>
-                                            <select class="form-select form-select-sm state" name="state" id=""></select>
+                                            <label for="state">State</label> <span class="text-danger badge">*</span>
+                                            <select class="form-select-sm form-select state" name="state" id=""></select>
                                             @error('state')
-                                                <div class="invalid-feedback d-block">{{ $message }}</div>
+                                                <div class="d-block invalid-feedback">{{ $message }}</div>
                                             @enderror
                                         </div>
 
                                         <!-- Distributor Dropdown -->
 
                                         <div class="form-group col-md-3">
-                                            <label for="distributor">Distributor</label><span class="badge text-danger">*</span>
-                                            <Select class="form-select form-select-sm distributor" name="distributor">
+                                            <label for="distributor">Distributor</label><span class="text-danger badge">*</span>
+                                            <Select class="form-select-sm form-select distributor" name="distributor">
                                                 <option value="">Select Distributor</option>
                                             </Select>
                                             @error('distributor')
-                                                <div class="invalid-feedback d-block">{{ $message }}</div>
+                                                <div class="d-block invalid-feedback">{{ $message }}</div>
                                             @enderror
                                         </div>
 
 
                                         <!-- Dealer Dropdown -->
                                         <div class="form-group col-md-3">
-                                            <label for="dealer">Dealer </label><span class="badge text-danger">*</span>
-                                            <Select class="form-select form-select-sm dealer" name="dealer">
+                                            <label for="dealer">Dealer </label><span class="text-danger badge">*</span>
+                                            <Select class="form-select-sm form-select dealer" name="dealer">
                                                 <option value="">Select Dealer</option>
                                             </Select>
                                             @error('dealer')
-                                                <div class="invalid-feedback d-block">{{ $message }}</div>
+                                                <div class="d-block invalid-feedback">{{ $message }}</div>
                                             @enderror
                                         </div>
-                                    @else
+                                    @elseif (Auth::guard('distributor')->check())
                                         <div class="form-group col-md-3">
-                                            <label for="distributor">Dealer<span class="badge text-danger">*</span>
-                                                <Select class="form-select form-select-sm dealer" name="dealer">
+                                            <label for="distributor">Dealer<span class="text-danger badge">*</span>
+                                                <Select class="form-select-sm form-select dealer" name="dealer">
                                                     <option selected disabled>Select Dealer</option>
                                                     @foreach ($dealers as $item)
                                                         <option value="{{ $item->id }}" country="{{ $item->country }}"
@@ -263,7 +263,38 @@
                                                     @endforeach
                                                 </Select>
                                                 @error('distributor')
-                                                    <div class="invalid-feedback d-block">{{ $message }}</div>
+                                                    <div class="d-block invalid-feedback">{{ $message }}</div>
+                                                @enderror
+                                        </div>
+
+                                        @elseif (Auth::guard('dealer')->check())
+                                         <div class="form-group col-md-3">
+                                            <label for="distributor">Dealer<span class="text-danger badge">*</span>
+                                                <Select class="form-select-sm form-select dealer" name="dealer">
+                                                    <option selected disabled>Select Dealer</option>
+                                                        <option value="{{ auth()->user()->id }}" country="{{ $item->country }}"
+                                                            state="{{ $item->state }}" dis="{{ $item->district }}"
+                                                            rto='@json($item->rto_devision)' readonly>
+                                                            {{ auth()->user()->business_name }}
+                                                        </option>
+                                                </Select>
+                                                @error('dealer')
+                                                    <div class="d-block invalid-feedback">{{ $message }}</div>
+                                                @enderror
+                                        </div>
+                                        @else
+                                        <div class="form-group col-md-3">
+                                            <label for="distributor">Dealer<span class="text-danger badge">*</span>
+                                                <Select class="form-select-sm form-select dealer" name="dealer">
+                                                    <option selected disabled>Select Dealer</option>
+                                                        <option value="{{ $dealer }}" country="{{ $item->country }}"
+                                                            state="{{ $item->state }}" dis="{{ $item->district }}"
+                                                            rto='@json($item->rto_devision)' readonly>
+                                                            {{ $dealer->business_name }}
+                                                        </option>
+                                                </Select>
+                                                @error('dealer')
+                                                    <div class="d-block invalid-feedback">{{ $message }}</div>
                                                 @enderror
                                         </div>
                                     @endif
@@ -271,38 +302,38 @@
                             </div>
                         </div>
 
-                        <div class="border border-secondary rounded m-3">
+                        <div class="m-3 border border-secondary rounded">
                             <!-- Device Info Header -->
                             <div class="bg-light p-2 border rounded-top">
-                                <h5 class="text-center mb-0">Device Info</h5>
+                                <h5 class="mb-0 text-center">Device Info</h5>
                             </div>
 
                             <!-- Form Body -->
-                            <div class="border rounded p-2">
+                            <div class="p-2 border rounded">
                                 <div class="row">
                                     <!-- Device Type Dropdown -->
                                     <div class="form-group col-md-4">
                                         <label for="deviceType">Device Type </label><span class="text-danger badge">*</span>
-                                        <select id="deviceType" name="deviceType" class="form-select form-select-sm">
+                                        <select id="deviceType" name="deviceType" class="form-select-sm form-select">
                                             <option>Select Device Type</option>
                                             <option value="New">New</option>
                                             <option value="Renewal">Renewal</option>
                                             <!-- Add more device types here if needed -->
                                         </select>
                                         @error('deviceType')
-                                            <div class="invalid-feedback d-block">{{ $message }}</div>
+                                            <div class="d-block invalid-feedback">{{ $message }}</div>
                                         @enderror
                                     </div>
 
                                     <!-- Device No Dropdown -->
                                     <div class="form-group col-md-4">
                                         <label for="deviceNo">Device No</label><span class="text-danger badge">*</span>
-                                        <select name="deviceNo" class="form-select form-select-sm deviceno">
+                                        <select name="deviceNo" class="form-select-sm form-select deviceno">
                                             <option>Select Device Number</option>
                                             <!-- Add more device numbers here if needed -->
                                         </select>
                                         @error('deviceNo')
-                                            <div class="invalid-feedback d-block">{{ $message }}</div>
+                                            <div class="d-block invalid-feedback">{{ $message }}</div>
                                         @enderror
                                     </div>
 
@@ -312,7 +343,7 @@
                                         <input type="text" class="form-control form-control-sm voltage" name="voltage"
                                             placeholder="" readonly>
                                         @error('voltage')
-                                            <div class="invalid-feedback d-block">{{ $message }}</div>
+                                            <div class="d-block invalid-feedback">{{ $message }}</div>
                                         @enderror
                                     </div>
 
@@ -333,30 +364,30 @@
                             </div>
                         </div>
 
-                        <div class="border border-secondary rounded m-3">
+                        <div class="m-3 border border-secondary rounded">
                             <!-- Form Header -->
-                            <div class="bg-light p-2 border rounded-top  simInfo">
-                                <h5 class=" text-center mb-0">SIM Info</h5>
+                            <div class="bg-light p-2 border rounded-top simInfo">
+                                <h5 class="mb-0 text-center">SIM Info</h5>
                             </div>
                         </div>
 
-                        <div class="border border-secondary rounded m-3">
+                        <div class="m-3 border border-secondary rounded">
                             <div class="bg-light p-2 border rounded-top">
-                                <h5 class="text-center mb-0">
+                                <h5 class="mb-0 text-center">
                                     Vehicle Info
                                 </h5>
                             </div>
-                            <div class="border rounded p-3">
+                            <div class="p-3 border rounded">
                                 <div class="row">
                                     <div class="form-group col-md-4">
                                         <label for="vehicleBirth">Vehicle Birth<span
                                                 class="text-danger badge">*</span></label>
-                                        <select id="vehicleBirth" name="vehicleBirth" class="form-select form-select-sm">
+                                        <select id="vehicleBirth" name="vehicleBirth" class="form-select-sm form-select">
                                             <option selected value="Old">Old</option>
                                             <option value="New">New</option>
                                         </select>
                                         @error('vehicleBirth')
-                                            <div class="invalid-feedback d-block">{{ $message }}</div>
+                                            <div class="d-block invalid-feedback">{{ $message }}</div>
                                         @enderror
                                     </div>
                                     <div class="form-group col-md-4" id="vaicleregNumber">
@@ -365,14 +396,14 @@
                                         <input type="text" class="form-control form-control-sm" id="regNumber"
                                             name="regNumber" placeholder="Enter Registration Number">
                                         @error('regNumber')
-                                            <div class="invalid-feedback d-block">{{ $message }}</div>
+                                            <div class="d-block invalid-feedback">{{ $message }}</div>
                                         @enderror
                                     </div>
                                     <div class="form-group col-md-4" id="vaicledate">
                                         <label for="date">Date<span class="text-danger badge">*</span></label>
                                         <input type="date" class="form-control form-control-sm" id="date" name="regdate">
                                         @error('date')
-                                            <div class="invalid-feedback d-block">{{ $message }}</div>
+                                            <div class="d-block invalid-feedback">{{ $message }}</div>
                                         @enderror
                                     </div>
                                     <div class="form-group col-md-4">
@@ -381,7 +412,7 @@
                                         <input type="text" class="form-control form-control-sm" id="chassisNumber"
                                             name="chassisNumber" placeholder="Enter Chassis Number">
                                         @error('chassisNumber')
-                                            <div class="invalid-feedback d-block">{{ $message }}</div>
+                                            <div class="d-block invalid-feedback">{{ $message }}</div>
                                         @enderror
                                     </div>
                                     <div class="form-group col-md-4">
@@ -390,7 +421,7 @@
                                         <input type="text" class="form-control form-control-sm" id="engineNumber"
                                             name="engineNumber" placeholder="Enter Engine Number">
                                         @error('engineNumber')
-                                            <div class="invalid-feedback d-block">{{ $message }}</div>
+                                            <div class="d-block invalid-feedback">{{ $message }}</div>
                                         @enderror
                                     </div>
                                     <div class="form-group col-md-4">
@@ -414,7 +445,7 @@
                                             <option value="TRUCK">TRUCK</option>
                                         </select>
                                         @error('vehicleType')
-                                            <div class="invalid-feedback d-block">{{ $message }}</div>
+                                            <div class="d-block invalid-feedback">{{ $message }}</div>
                                         @enderror
                                     </div>
                                     <div class="form-group col-md-4">
@@ -422,7 +453,7 @@
                                         <input type="text" class="form-control form-control-sm" id="vaiModel"
                                             name="vaiclemodel" placeholder="Enter Make & Model">
                                         @error('vaiclemodel')
-                                            <div class="invalid-feedback d-block">{{ $message }}</div>
+                                            <div class="d-block invalid-feedback">{{ $message }}</div>
                                         @enderror
                                     </div>
                                     <div class="form-group col-md-4">
@@ -430,7 +461,7 @@
                                         <input type="text" class="form-control" id="modelYear" name="vaimodelyear"
                                             placeholder="Enter Model Year">
                                         @error('vaimodelyear')
-                                            <div class="invalid-feedback d-block">{{ $message }}</div>
+                                            <div class="d-block invalid-feedback">{{ $message }}</div>
                                         @enderror
                                     </div>
 
@@ -438,35 +469,35 @@
                                         <label for="insurance">Insu. Renew date</label>
                                         <input type="date" class="form-control" id="insurance" name="vaicleinsurance">
                                         @error('vaicleinsurance')
-                                            <div class="invalid-feedback d-block">{{ $message }}</div>
+                                            <div class="d-block invalid-feedback">{{ $message }}</div>
                                         @enderror
                                     </div>
                                     <div class="form-group col-md-4">
                                         <label for="panicButton">Pollution Renew date</label>
                                         <input type="date" class="form-control" id="panicButton" name="pollutiondate">
                                         @error('pollutiondate')
-                                            <div class="invalid-feedback d-block">{{ $message }}</div>
+                                            <div class="d-block invalid-feedback">{{ $message }}</div>
                                         @enderror
                                     </div>
                                 </div>
                             </div>
                         </div>
-                        <div class="border border-secondary rounded m-3">
+                        <div class="m-3 border border-secondary rounded">
                             <div class="bg-light p-3 border rounded-top">
-                                <h5 class="text-center mb-0">Customer Info</h5>
+                                <h5 class="mb-0 text-center">Customer Info</h5>
                             </div>
-                            <div class="border rounded p-3">
-                                <div class="row g-3 mb-4">
+                            <div class="p-3 border rounded">
+                                <div class="mb-4 row g-3">
                                     <!-- Customer Name -->
                                     <div class="col-md-4">
                                         <div class="form-floating">
-                                            <input type="text" class="form-control shadow-sm" id="customerName"
+                                            <input type="text" class="shadow-sm form-control" id="customerName"
                                                 name="customerName" placeholder="Enter Name"
                                                 value="{{ old('customerName') }}">
                                             <label for="customerName" class="text-muted small">Full Name <span
                                                     class="text-danger">*</span></label>
                                             @error('customerName')
-                                                <div class="invalid-feedback d-block small">{{ $message }}</div>
+                                                <div class="d-block invalid-feedback small">{{ $message }}</div>
                                             @enderror
                                         </div>
                                     </div>
@@ -474,12 +505,12 @@
                                     <!-- Customer Email -->
                                     <div class="col-md-4">
                                         <div class="form-floating">
-                                            <input type="email" class="form-control shadow-sm" id="email"
+                                            <input type="email" class="shadow-sm form-control" id="email"
                                                 name="customerEmail" placeholder="Enter Email"
                                                 value="{{ old('customerEmail') }}">
                                             <label for="email" class="text-muted small">Email Address</label>
                                             @error('customerEmail')
-                                                <div class="invalid-feedback d-block small">{{ $message }}</div>
+                                                <div class="d-block invalid-feedback small">{{ $message }}</div>
                                             @enderror
                                         </div>
                                     </div>
@@ -487,13 +518,13 @@
                                     <!-- Customer Mobile -->
                                     <div class="col-md-4">
                                         <div class="form-floating">
-                                            <input type="tel" class="form-control shadow-sm" id="mobile"
+                                            <input type="tel" class="shadow-sm form-control" id="mobile"
                                                 name="customerMobile" placeholder="Enter Mobile"
                                                 value="{{ old('customerMobile') }}">
                                             <label for="mobile" class="text-muted small">Mobile Number <span
                                                     class="text-danger">*</span></label>
                                             @error('customerMobile')
-                                                <div class="invalid-feedback d-block small">{{ $message }}</div>
+                                                <div class="d-block invalid-feedback small">{{ $message }}</div>
                                             @enderror
                                         </div>
                                     </div>
@@ -501,12 +532,12 @@
                                     <!-- GSTIN Number -->
                                     <div class="col-md-4">
                                         <div class="form-floating">
-                                            <input type="text" class="form-control shadow-sm" id="gstin"
+                                            <input type="text" class="shadow-sm form-control" id="gstin"
                                                 name="customergstin" placeholder="Enter GSTIN"
                                                 value="{{ old('customergstin') }}">
                                             <label for="gstin" class="text-muted small">GSTIN Number</label>
                                             @error('customergstin')
-                                                <div class="invalid-feedback d-block small">{{ $message }}</div>
+                                                <div class="d-block invalid-feedback small">{{ $message }}</div>
                                             @enderror
                                         </div>
                                     </div>
@@ -514,12 +545,12 @@
                                     <!-- Country -->
                                     <div class="col-md-4">
                                         <div class="form-floating">
-                                            <input type="text" class="form-control shadow-sm bg-light" name="country"
+                                            <input type="text" class="bg-light shadow-sm form-control" name="country"
                                                 id="country" value="{{ old('country') }}" readonly>
                                             <label for="country" class="text-muted small">Country <span
                                                     class="text-danger">*</span></label>
                                             @error('country')
-                                                <div class="invalid-feedback d-block small">{{ $message }}</div>
+                                                <div class="d-block invalid-feedback small">{{ $message }}</div>
                                             @enderror
                                         </div>
                                     </div>
@@ -527,27 +558,27 @@
                                     <!-- State -->
                                     <div class="col-md-4">
                                         <div class="form-floating">
-                                            <input type="text" class="form-control shadow-sm bg-light" name="state"
+                                            <input type="text" class="bg-light shadow-sm form-control" name="state"
                                                 id="state" value="{{ old('state') }}" readonly>
                                             <label for="state" class="text-muted small">State/Region <span
                                                     class="text-danger">*</span></label>
                                             @error('state')
-                                                <div class="invalid-feedback d-block small">{{ $message }}</div>
+                                                <div class="d-block invalid-feedback small">{{ $message }}</div>
                                             @enderror
                                         </div>
                                     </div>
                                 </div>
-                                <div class="row g-3 mb-4">
+                                <div class="mb-4 row g-3">
                                     <!-- District -->
                                     <div class="col-md-4">
                                         <div class="form-floating">
-                                            <input type="text" class="form-control shadow-sm bg-light"
+                                            <input type="text" class="bg-light shadow-sm form-control"
                                                 name="coustomerDistrict" id="district" readonly
                                                 value="{{ old('coustomerDistrict') }}">
                                             <label for="district" class="text-muted small">District <span
                                                     class="text-danger">*</span></label>
                                             @error('coustomerDistrict')
-                                                <div class="invalid-feedback d-block">{{ $message }}</div>
+                                                <div class="d-block invalid-feedback">{{ $message }}</div>
                                             @enderror
                                         </div>
                                     </div>
@@ -555,14 +586,14 @@
                                     <!-- RTO Division -->
                                     <div class="col-md-4">
                                         <div class="form-floating">
-                                            <select class="form-select shadow-sm" name="rto_devision" id="rto_division">
+                                            <select class="shadow-sm form-select" name="rto_devision" id="rto_division">
                                                 <option value="" selected disabled hidden>Select RTO Division</option>
                                                 <!-- Options will be populated dynamically -->
                                             </select>
                                             <label for="rto_division" class="text-muted small">RTO Division <span
                                                     class="text-danger">*</span></label>
                                             @error('rto_division')
-                                                <div class="invalid-feedback d-block">{{ $message }}</div>
+                                                <div class="d-block invalid-feedback">{{ $message }}</div>
                                             @enderror
 
                                         </div>
@@ -571,12 +602,12 @@
                                     <!-- Pin Code -->
                                     <div class="col-md-4">
                                         <div class="form-floating">
-                                            <input type="text" class="form-control shadow-sm" name="coustomerPincode"
+                                            <input type="text" class="shadow-sm form-control" name="coustomerPincode"
                                                 id="pincode" value="{{ old('coustomerPincode') }}">
                                             <label for="pincode" class="text-muted small">Pin Code <span
                                                     class="text-danger">*</span></label>
                                             @error('coustomerPincode')
-                                                <div class="invalid-feedback d-block small">{{ $message }}</div>
+                                                <div class="d-block invalid-feedback small">{{ $message }}</div>
                                             @enderror
                                         </div>
                                     </div>
@@ -584,13 +615,13 @@
                                     <!-- Address -->
                                     <div class="col-md-8">
                                         <div class="form-floating">
-                                            <input type="text" class="form-control shadow-sm" id="address"
+                                            <input type="text" class="shadow-sm form-control" id="address"
                                                 name="coustomeraddress" placeholder=" "
                                                 value="{{ old('coustomeraddress') }}">
                                             <label for="address" class="text-muted small">Complete Address <span
                                                     class="text-danger">*</span></label>
                                             @error('coustomeraddress')
-                                                <div class="invalid-feedback d-block small">{{ $message }}</div>
+                                                <div class="d-block invalid-feedback small">{{ $message }}</div>
                                             @enderror
                                         </div>
                                     </div>
@@ -598,12 +629,12 @@
                                     <!-- Aadhaar -->
                                     <div class="col-md-4">
                                         <div class="form-floating">
-                                            <input type="text" class="form-control shadow-sm" id="aadhaar"
+                                            <input type="text" class="shadow-sm form-control" id="aadhaar"
                                                 name="customeraadhar" placeholder=" " value="{{ old('customeraadhar') }}">
                                             <label for="aadhaar" class="text-muted small">Aadhaar Number <span
                                                     class="text-danger">*</span></label>
                                             @error('customeraadhar')
-                                                <div class="invalid-feedback d-block small">{{ $message }}</div>
+                                                <div class="d-block invalid-feedback small">{{ $message }}</div>
                                             @enderror
                                         </div>
                                     </div>
@@ -611,27 +642,27 @@
                                     <!-- PAN Number -->
                                     <div class="col-md-4">
                                         <div class="form-floating">
-                                            <input type="text" class="form-control shadow-sm" id="panNo"
+                                            <input type="text" class="shadow-sm form-control" id="panNo"
                                                 name="customerpanno" placeholder=" " value="{{ old('customerpanno') }}">
                                             <label for="panNo" class="text-muted small">PAN Number <span
                                                     class="text-danger">*</span></label>
                                             @error('customerpanno')
-                                                <div class="invalid-feedback d-block small">{{ $message }}</div>
+                                                <div class="d-block invalid-feedback small">{{ $message }}</div>
                                             @enderror
                                         </div>
                                     </div>
                                 </div>
                             </div>
                         </div>
-                        <div class="border border-secondary rounded m-3">
+                        <div class="m-3 border border-secondary rounded">
                             <div class="bg-light p-2 border rounded-top">
-                                <h5 class="text-center mb-0">Packages</h5>
+                                <h5 class="mb-0 text-center">Packages</h5>
                             </div>
-                            <div class="border rounded p-3">
-                                <div class="row justify-content-center">
+                            <div class="p-3 border rounded">
+                                <div class="justify-content-center row">
                                     @foreach ($subscriptions as $item)
-                                        <div class="col-md-3 mb-2 Packages">
-                                            <div class=" text-center shadow-sm h-100 select-subscription" data-id=""
+                                        <div class="mb-2 col-md-3 Packages">
+                                            <div class="shadow-sm h-100 text-center select-subscription" data-id=""
                                                 style="width: 100%; cursor: pointer;">
                                                 <!-- Added cursor:pointer for click indication -->
                                                 <div class="card-body">
@@ -639,7 +670,7 @@
                                                         <h5 class="card-title fw-bold">{{ $item->packageName }}</h5>
                                                         <span class="packageId" hidden>{{ $item->id }}</span>
                                                         <div class="d-flex align-items-center">
-                                                            <i class="bi bi-clock me-1"></i>
+                                                            <i class="me-1 bi bi-clock"></i>
                                                             <span></span>
                                                         </div>
                                                     </div>
@@ -653,32 +684,32 @@
                                     @endforeach
                                 </div>
                                 @error('subscriptionpackage')
-                                    <div class="invalid-feedback d-block">{{ $message }}</div>
+                                    <div class="d-block invalid-feedback">{{ $message }}</div>
                                 @enderror
                                 <input type="hidden" name="subscriptionpackage" id="subscriptionpackage">
                             </div>
 
                         </div>
-                        <div class="border border-secondary rounded m-3">
-                            <div class="bg-light border rounded-top p-3">
-                                <div class="row align-items-center">
+                        <div class="m-3 border border-secondary rounded">
+                            <div class="bg-light p-3 border rounded-top">
+                                <div class="align-items-center row">
                                     <!-- Technician Info Title -->
-                                    <div class="col-md-6 text-center">
+                                    <div class="text-center col-md-6">
                                         <h5>Technician Info</h5>
                                     </div>
 
                                     <!-- Select Technician Dropdown -->
                                     <div class="col-md-3">
-                                        <select class="form-select form-select-sm technician" name="technician">
+                                        <select class="form-select-sm form-select technician" name="technician">
                                             <option selected disabled>Select Technician</option>
                                         </select>
                                         @error('technician')
-                                            <div class="invalid-feedback d-block">{{ $message }}</div>
+                                            <div class="d-block invalid-feedback">{{ $message }}</div>
                                         @enderror
                                     </div>
 
                                     <!-- Add Technician Button -->
-                                    <div class="col-md-3 text-end">
+                                    <div class="text-end col-md-3">
                                         {{-- <button type="button" class="btn" data-bs-toggle="modal"
                                             data-bs-target="#addTechnician" style="background-color: #260950;color:#fff">
                                             Add Technician
@@ -686,7 +717,7 @@
                                     </div>
                                 </div>
                             </div>
-                            <div class="row p-2">
+                            <div class="p-2 row">
                                 <div class="form-group col-md-4">
                                     <label for="firstName" class="form-label">Name <span
                                             class="text-danger">*</span></label>
@@ -694,7 +725,7 @@
                                         placeholder="First Name" require readonly>
 
                                     @error('name')
-                                        <div class="invalid-feedback d-block">{{ $message }}</div>
+                                        <div class="d-block invalid-feedback">{{ $message }}</div>
                                     @enderror
 
                                 </div>
@@ -729,18 +760,18 @@
                 </div>
 
 
-                <div class="border border-secondary rounded m-3">
+                <div class="m-3 border border-secondary rounded">
                     <div class="bg-light p-2 border rounded-top">
-                        <h5 class="text-center mb-0">Installation Detail</h5>
+                        <h5 class="mb-0 text-center">Installation Detail</h5>
                     </div>
-                    <div class="border rounded p-3">
+                    <div class="p-3 border rounded">
                         <div class="row">
                             <div class="form-group col-md-4">
                                 <label for="InvoiceNo" class="form-label">Invoice No<span
                                         class="text-danger">*</span></label>
                                 <input type="text" class="form-control form-control-sm" id="InvoiceNo" name="InvoiceNo">
                                 @error('InvoiceNo')
-                                    <div class="invalid-feedback d-block">{{ $message }}</div>
+                                    <div class="d-block invalid-feedback">{{ $message }}</div>
                                 @enderror
                             </div>
                             <div class="form-group col-md-4">
@@ -749,7 +780,7 @@
                                 <input type="text" class="form-control form-control-sm" id="VehicleKMReading"
                                     name="VehicleKMReading">
                                 @error('VehicleKMReading')
-                                    <div class="invalid-feedback d-block">{{ $message }}</div>
+                                    <div class="d-block invalid-feedback">{{ $message }}</div>
                                 @enderror
                             </div>
                             <div class="form-group col-md-4">
@@ -758,7 +789,7 @@
                                 <input type="text" class="form-control form-control-sm" id="DriverLicenseNo"
                                     name="DriverLicenseNo">
                                 @error('DriverLicenseNo')
-                                    <div class="invalid-feedback d-block">{{ $message }}</div>
+                                    <div class="d-block invalid-feedback">{{ $message }}</div>
                                 @enderror
                             </div>
                             <div class="form-group col-md-4">
@@ -766,7 +797,7 @@
                                         class="text-danger">*</span></label>
                                 <input type="date" class="form-control form-control-sm" id="MappedDate" name="MappedDate">
                                 @error('MappedDate')
-                                    <div class="invalid-feedback d-block">{{ $message }}</div>
+                                    <div class="d-block invalid-feedback">{{ $message }}</div>
                                 @enderror
                             </div>
                             <div class="form-group col-md-4">
@@ -775,32 +806,32 @@
                                 <input type="text" class="form-control form-control-sm" id="NoOfPanicButtons"
                                     name="NoOfPanicButtons">
                                 @error('NoOfPanicButtons')
-                                    <div class="invalid-feedback d-block">{{ $message }}</div>
+                                    <div class="d-block invalid-feedback">{{ $message }}</div>
                                 @enderror
                             </div>
                         </div>
                     </div>
                 </div>
-                <div class="border border-secondary rounded m-3">
+                <div class="m-3 border border-secondary rounded">
                     <div class="bg-light p-2 border rounded-top">
-                        <h5 class="text-center mb-0">Vehicle Document (* document)</h5>
+                        <h5 class="mb-0 text-center">Vehicle Document (* document)</h5>
                     </div>
-                    <div class="border rounded p-3">
-                        <p class="text-danger small mb-2 text-center">
+                    <div class="p-3 border rounded">
+                        <p class="mb-2 text-danger text-center small">
                             * File types supported: PNG, JPG, JPEG, PDF only. File size should be up to 6MB.
                         </p>
 
-                        <div class="row mb-3">
+                        <div class="mb-3 row">
                             <div class="col-md-4">
                                 <label for="vehicle" class="form-label">Vehicle</label>
                                 <input type="file" class="form-control form-control-sm preview-upload" id="vehicle"
                                     name="vehicleimg" accept=".png,.jpg,.jpeg,.pdf">
                                 <div class="mt-2 text-center">
-                                    <img id="preview-vehicle" class="img-fluid border rounded d-none" alt="Vehicle Preview"
+                                    <img id="preview-vehicle" class="border rounded img-fluid d-none" alt="Vehicle Preview"
                                         style="max-height: 150px;">
                                 </div>
                                 @error('vehicleimg')
-                                    <div class="invalid-feedback d-block">{{ $message }}</div>
+                                    <div class="d-block invalid-feedback">{{ $message }}</div>
                                 @enderror
                             </div>
                             <div class="col-md-4">
@@ -808,11 +839,11 @@
                                 <input type="file" class="form-control form-control-sm preview-upload" id="rc"
                                     name="vehiclerc" accept=".png,.jpg,.jpeg,.pdf">
                                 <div class="mt-2 text-center">
-                                    <img id="preview-rc" class="img-fluid border rounded d-none" alt="RC Preview"
+                                    <img id="preview-rc" class="border rounded img-fluid d-none" alt="RC Preview"
                                         style="max-height: 150px;">
                                 </div>
                                 @error('vehiclerc')
-                                    <div class="invalid-feedback d-block">{{ $message }}</div>
+                                    <div class="d-block invalid-feedback">{{ $message }}</div>
                                 @enderror
                             </div>
                             <div class="col-md-4">
@@ -820,26 +851,26 @@
                                 <input type="file" class="form-control form-control-sm preview-upload" id="device"
                                     name="vaicledeviceimg" accept=".png,.jpg,.jpeg,.pdf">
                                 <div class="mt-2 text-center">
-                                    <img id="preview-device" class="img-fluid border rounded d-none" alt="Device Preview"
+                                    <img id="preview-device" class="border rounded img-fluid d-none" alt="Device Preview"
                                         style="max-height: 150px;">
                                 </div>
                                 @error('vaicledeviceimg')
-                                    <div class="invalid-feedback d-block">{{ $message }}</div>
+                                    <div class="d-block invalid-feedback">{{ $message }}</div>
                                 @enderror
                             </div>
                         </div>
 
-                        <div class="row mb-3">
+                        <div class="mb-3 row">
                             <div class="col-md-4">
                                 <label for="pan" class="form-label">Pan Card</label>
                                 <input type="file" class="form-control form-control-sm preview-upload" id="pan"
                                     name="pancardimg" accept=".png,.jpg,.jpeg,.pdf">
                                 <div class="mt-2 text-center">
-                                    <img id="preview-pan" class="img-fluid border rounded d-none" alt="Pan Card Preview"
+                                    <img id="preview-pan" class="border rounded img-fluid d-none" alt="Pan Card Preview"
                                         style="max-height: 150px;">
                                 </div>
                                 @error('pancardimg')
-                                    <div class="invalid-feedback d-block">{{ $message }}</div>
+                                    <div class="d-block invalid-feedback">{{ $message }}</div>
                                 @enderror
                             </div>
                             <div class="col-md-4">
@@ -847,11 +878,11 @@
                                 <input type="file" class="form-control form-control-sm preview-upload" id="aadhaar"
                                     name="aadharcardimg" accept=".png,.jpg,.jpeg,.pdf">
                                 <div class="mt-2 text-center">
-                                    <img id="preview-aadhaar" class="img-fluid border rounded d-none"
+                                    <img id="preview-aadhaar" class="border rounded img-fluid d-none"
                                         alt="Aadhaar Card Preview" style="max-height: 150px;">
                                 </div>
                                 @error('aadharcardimg')
-                                    <div class="invalid-feedback d-block">{{ $message }}</div>
+                                    <div class="d-block invalid-feedback">{{ $message }}</div>
                                 @enderror
                             </div>
                             <div class="col-md-4">
@@ -859,26 +890,26 @@
                                 <input type="file" class="form-control form-control-sm preview-upload" id="invoice"
                                     name="invoiceimg" accept=".png,.jpg,.jpeg,.pdf">
                                 <div class="mt-2 text-center">
-                                    <img id="preview-invoice" class="img-fluid border rounded d-none" alt="Invoice Preview"
+                                    <img id="preview-invoice" class="border rounded img-fluid d-none" alt="Invoice Preview"
                                         style="max-height: 150px;">
                                 </div>
                                 @error('invoiceimg')
-                                    <div class="invalid-feedback d-block">{{ $message }}</div>
+                                    <div class="d-block invalid-feedback">{{ $message }}</div>
                                 @enderror
                             </div>
                         </div>
 
-                        <div class="row mb-3">
+                        <div class="mb-3 row">
                             <div class="col-md-4">
                                 <label for="signature" class="form-label">Signature</label>
                                 <input type="file" class="form-control form-control-sm preview-upload" id="signature"
                                     name="signatureimg" accept=".png,.jpg,.jpeg,.pdf">
                                 <div class="mt-2 text-center">
-                                    <img id="preview-signature" class="img-fluid border rounded d-none"
+                                    <img id="preview-signature" class="border rounded img-fluid d-none"
                                         alt="Signature Preview" style="max-height: 150px;">
                                 </div>
                                 @error('signatureimg')
-                                    <div class="invalid-feedback d-block">{{ $message }}</div>
+                                    <div class="d-block invalid-feedback">{{ $message }}</div>
                                 @enderror
                             </div>
                             <div class="col-md-4">
@@ -886,18 +917,18 @@
                                 <input type="file" class="form-control form-control-sm preview-upload" id="panic"
                                     name="panicbuttonimg" accept=".png,.jpg,.jpeg,.pdf">
                                 <div class="mt-2 text-center">
-                                    <img id="preview-panic" class="img-fluid border rounded d-none"
+                                    <img id="preview-panic" class="border rounded img-fluid d-none"
                                         alt="Panic Button Preview" style="max-height: 150px;">
                                 </div>
                                 @error('panicbuttonimg')
-                                    <div class="invalid-feedback d-block">{{ $message }}</div>
+                                    <div class="d-block invalid-feedback">{{ $message }}</div>
                                 @enderror
                             </div>
                         </div>
                     </div>
                 </div>
 
-                <div class="text-center my-2">
+                <div class="my-2 text-center">
                     <button type="submit" class="btn" style="background-color: #260950;color:#fff">Submit</button>
                     <button type="reset" class="btn btn-secondary">Cancel</button>
                 </div>
@@ -918,7 +949,7 @@
                     <form action="{{ route('download.PDF') }}" method="post">
                         @csrf
                         <div class="mb-2">
-                            <select name="type" class="form-select form-select-sm">
+                            <select name="type" class="form-select-sm form-select">
                                 <option value="customer_copy">Customer Copy</option>
                                 <option value="department_copy">Department Copy</option>
                             </select>
@@ -926,14 +957,14 @@
                         <input type="text" name="deviceId" id="deviceId" style="display: none">
                         <div class="mb-2">
                             <label for="" class="form-label">Leatter Head</label>
-                            <select name="letterHead" class="form-select form-select-sm">
+                            <select name="letterHead" class="form-select-sm form-select">
                                 <option value="allow">Allow</option>
                                 <option value="deny">Deny</option>
                             </select>
                         </div>
                         <div class="mb-2">
                             <label for="" class="form-label">Certificate</label>
-                            <select name="certificate" class="form-select form-select-sm">
+                            <select name="certificate" class="form-select-sm form-select">
                                 <option value="installation">Installation</option>
                                 <option value="warranty">Warranty</option>
                                 <option value="fitment">Fitment</option>
@@ -1149,7 +1180,7 @@
                     }
                 });
                 $.ajax({
-                    url: `/manufacturer/fetch/technician/${dealer}`,
+                    url: `/fetch/technician/${dealer}`,
                     type: 'GET',
                     dataType: 'json',
                     success: function (data) {
@@ -1211,7 +1242,7 @@
                             data.forEach(sim_info => {
                                 $('.simInfo').append(
                                     ` 
-                                                                                                                                                                                                    <div class="row py-2">
+                                                                                                                                                                                                    <div class="py-2 row">
                                                                                                                                                                                                       <div class="col-md-3">
                                                                                                                                                                                                         <label>Sim No.</label>
                                                                                                                                                                                                         <input class="form-control form-control-sm" value="${sim_info.simNo}">

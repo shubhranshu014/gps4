@@ -48,6 +48,10 @@ class LoginController extends Controller
         elseif (Auth::guard('dealer')->attempt(['email' => $request->email, 'password' => $request->password])) {
             // Redirect to the admin dashboard after successful login
             return redirect()->route('dealer.dashboard');  // Replace 'admin.dashboard' with your admin route name
+        }
+        elseif (Auth::guard('technician')->attempt(['email' => $request->email, 'password' => $request->password])) {
+            // Redirect to the admin dashboard after successful login
+            return redirect()->route('technician.dashboard');  // Replace 'admin.dashboard' with your admin route name
         } else {
             // Redirect back with error message if credentials are invalid
             return redirect()->route('login-form')

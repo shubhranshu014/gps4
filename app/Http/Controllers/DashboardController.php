@@ -2,6 +2,8 @@
 
 namespace App\Http\Controllers;
 
+use App\Models\AllocatedBarCode;
+use App\Models\MapDeviceDetails;
 use Illuminate\Http\Request;
 use Carbon\Carbon;
 use App\Models\Admin;
@@ -193,19 +195,87 @@ class DashboardController extends Controller
             ->whereDate('updated_at', Carbon::today())
             ->count();
 
-         $totalDeviceMapThisMonth = BarCode::where('mfg_id', auth('manufacturer')->user()->id)
+        $totalDeviceMapThisMonth = BarCode::where('mfg_id', auth('manufacturer')->user()->id)
             ->where('status', 2)
             ->whereMonth('updated_at', Carbon::now()->month)
             ->whereYear('updated_at', Carbon::now()->year)
             ->count();
-        return view('backend.manufacturer.dashboard')->with(compact('distributors', 'allTechnicians', 'totalDevice', 'totalDeviceActive', 'totalDeviceAllocated', 'totalDeviceAllocatedToday', 'totalDeviceAllocatedThisMonth', 'totalMapDevice', 'totalDeviceMapToday','totalDeviceMapThisMonth'));
+        return view('backend.manufacturer.dashboard')->with(compact('distributors', 'allTechnicians', 'totalDevice', 'totalDeviceActive', 'totalDeviceAllocated', 'totalDeviceAllocatedToday', 'totalDeviceAllocatedThisMonth', 'totalMapDevice', 'totalDeviceMapToday', 'totalDeviceMapThisMonth'));
     }
 
-    public function distributor(){
-        return view('backend.distributor.dashboard');
+    public function distributor()
+    {
+
+        $distributor = auth('distributor')->user();
+        $dealersdata = Dealer::where('distributor_id', $distributor->id)->get();
+        $layout = 'layouts.distributor';
+        $mapDevices = [];
+        // Iterate over dealers
+        foreach ($dealersdata as $dealer) {
+            // Get map devices for the current dealer and merge them into the $mapDevices array
+            $mapDevices = array_merge($mapDevices, MapDeviceDetails::with('barcodes', 'dealer', 'cusmtomer')->where('dealer_id', $dealer->id)->get()->all());
+        }
+
+        $mapDevicesToday = [];
+        // Iterate over dealers
+        foreach ($dealersdata as $dealer) {
+            // Get map devices for the current dealer and merge them into the $mapDevices array
+            $mapDevicesToday = array_merge($mapDevices, MapDeviceDetails::with('barcodes', 'dealer', 'cusmtomer')->where('dealer_id', $dealer->id)->whereDate('updated_at', Carbon::today())->get()->all());
+        }
+
+        $dealers = $distributor->dealers()->withCount('technicians')->get();
+
+        $dealerCount = $dealers->count();
+        $technicianCount = $dealers->sum('technicians_count');
+
+        $totalDevice = AllocatedBarCode::where('distributor_id', auth('distributor')->user()->id)->where('status', 0)->count();
+        $totalDeviceAllocated = AllocatedBarCode::where('distributor_id', auth('distributor')->user()->id)->where('status', 1)->count();
+        $totalDeviceAllocatedToday = AllocatedBarCode::where('distributor_id', auth('distributor')->user()->id)
+            ->where('status', 1)
+            ->whereDate('updated_at', Carbon::today())
+            ->count();
+
+        $totalDeviceAllocatedThisMonth = AllocatedBarCode::where('distributor_id', auth('distributor')->user()->id)
+            ->where('status', 1)
+            ->whereMonth('updated_at', Carbon::now()->month)
+            ->whereYear('updated_at', Carbon::now()->year)
+            ->count();
+
+        return view('backend.distributor.dashboard')->with(compact('dealerCount', 'technicianCount', "totalDevice", 'totalDeviceAllocated', 'totalDeviceAllocatedToday', 'totalDeviceAllocatedThisMonth', "mapDevices", "mapDevicesToday"));
     }
 
-    public function dealer(){
-        return view('backend.dealer.dashboard');
+    public function dealer()
+    {
+        $dealer = auth('dealer')->user(); // adjust guard if needed
+        $technicianCount = $dealer->technicians()->count();
+        $totalMappedCount = MapDeviceDetails::where('dealer_id', $dealer->id)->count();
+
+        $todayMappedCount = MapDeviceDetails::where('dealer_id', $dealer)
+            ->whereDate('mapped_date', Carbon::today()->toDateString())
+            ->count();
+
+        $monthMappedCount = MapDeviceDetails::where('dealer_id', $dealer)
+            ->whereMonth('mapped_date', Carbon::now()->month)
+            ->whereYear('mapped_date', Carbon::now()->year)
+            ->count();
+
+        return view('backend.dealer.dashboard')->with(compact('technicianCount', "totalMappedCount", "todayMappedCount", "monthMappedCount"));
+    }
+    public function technician()
+    {
+        $technician = auth('technician')->user()->id;
+
+        $totalMappedCount = MapDeviceDetails::where('technician_id', $technician)->count();
+
+        $todayMappedCount = MapDeviceDetails::where('technician_id', $technician)
+            ->whereDate('mapped_date', Carbon::today()->toDateString())
+            ->count();
+
+        $monthMappedCount = MapDeviceDetails::where('technician_id', $technician)
+            ->whereMonth('mapped_date', Carbon::now()->month)
+            ->whereYear('mapped_date', Carbon::now()->year)
+            ->count();
+
+        return view('backend.technician.dashboard')->with(compact('totalMappedCount', 'todayMappedCount', 'monthMappedCount'));
     }
 }

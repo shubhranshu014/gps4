@@ -198,58 +198,58 @@
 <body>
     <div class="container-scroller">
         <div class="horizontal-menu">
-            <nav class="navbar top-navbar col-lg-12 col-12 p-0">
+            <nav class="top-navbar p-0 navbar col-lg-12 col-12">
                 <div class="container-fluid">
-                    <div class="navbar-menu-wrapper d-flex align-items-center justify-content-between">
-                        <ul class="navbar-nav navbar-nav-left">
-                            <li class="nav-item ms-0 me-5 d-lg-flex d-none">
-                                <a href="#" class="nav-link horizontal-nav-left-menu"><i
-                                        class="mdi mdi-format-list-bulleted"></i></a>
+                    <div class="d-flex align-items-center justify-content-between navbar-menu-wrapper">
+                        <ul class="navbar-nav-left navbar-nav">
+                            <li class="d-lg-flex ms-0 me-5 nav-item d-none">
+                                <a href="#" class="horizontal-nav-left-menu nav-link"><i
+                                        class="mdi-format-list-bulleted mdi"></i></a>
                             </li>
                             <li class="nav-item dropdown">
-                                <a class="nav-link count-indicator dropdown-toggle d-flex align-items-center justify-content-center"
+                                <a class="d-flex align-items-center justify-content-center nav-link count-indicator dropdown-toggle"
                                     id="notificationDropdown" href="#" data-bs-toggle="dropdown">
-                                    <i class="mdi mdi-bell mx-0"></i>
-                                    <span class="count bg-success">2</span>
+                                    <i class="mx-0 mdi mdi-bell"></i>
+                                    <span class="bg-success count">2</span>
                                 </a>
-                                <div class="dropdown-menu dropdown-menu-right navbar-dropdown preview-list"
+                                <div class="dropdown-menu-right dropdown-menu navbar-dropdown preview-list"
                                     aria-labelledby="notificationDropdown">
-                                    <p class="mb-0 font-weight-normal float-left dropdown-header">Notifications</p>
+                                    <p class="float-left mb-0 font-weight-normal dropdown-header">Notifications</p>
                                     <a class="dropdown-item preview-item">
                                         <div class="preview-thumbnail">
-                                            <div class="preview-icon bg-success">
-                                                <i class="mdi mdi-information mx-0"></i>
+                                            <div class="bg-success preview-icon">
+                                                <i class="mx-0 mdi mdi-information"></i>
                                             </div>
                                         </div>
                                         <div class="preview-item-content">
-                                            <h6 class="preview-subject font-weight-normal">Application Error</h6>
-                                            <p class="font-weight-light small-text mb-0 text-muted">
+                                            <h6 class="font-weight-normal preview-subject">Application Error</h6>
+                                            <p class="mb-0 font-weight-light text-muted small-text">
                                                 Just now
                                             </p>
                                         </div>
                                     </a>
                                     <a class="dropdown-item preview-item">
                                         <div class="preview-thumbnail">
-                                            <div class="preview-icon bg-warning">
-                                                <i class="mdi mdi-settings mx-0"></i>
+                                            <div class="bg-warning preview-icon">
+                                                <i class="mx-0 mdi mdi-settings"></i>
                                             </div>
                                         </div>
                                         <div class="preview-item-content">
-                                            <h6 class="preview-subject font-weight-normal">Settings</h6>
-                                            <p class="font-weight-light small-text mb-0 text-muted">
+                                            <h6 class="font-weight-normal preview-subject">Settings</h6>
+                                            <p class="mb-0 font-weight-light text-muted small-text">
                                                 Private message
                                             </p>
                                         </div>
                                     </a>
                                     <a class="dropdown-item preview-item">
                                         <div class="preview-thumbnail">
-                                            <div class="preview-icon bg-info">
-                                                <i class="mdi mdi-account-box mx-0"></i>
+                                            <div class="bg-info preview-icon">
+                                                <i class="mx-0 mdi mdi-account-box"></i>
                                             </div>
                                         </div>
                                         <div class="preview-item-content">
-                                            <h6 class="preview-subject font-weight-normal">New user registration</h6>
-                                            <p class="font-weight-light small-text mb-0 text-muted">
+                                            <h6 class="font-weight-normal preview-subject">New user registration</h6>
+                                            <p class="mb-0 font-weight-light text-muted small-text">
                                                 2 days ago
                                             </p>
                                         </div>
@@ -257,22 +257,22 @@
                                 </div>
                             </li>
                             <li class="nav-item dropdown">
-                                <a class="nav-link count-indicator dropdown-toggle d-flex justify-content-center align-items-center"
+                                <a class="d-flex align-items-center justify-content-center nav-link count-indicator dropdown-toggle"
                                     id="messageDropdown" href="#" data-bs-toggle="dropdown">
-                                    <i class="mdi mdi-email mx-0"></i>
-                                    <span class="count bg-primary">4</span>
+                                    <i class="mx-0 mdi mdi-email"></i>
+                                    <span class="bg-primary count">4</span>
                                 </a>
-                                <div class="dropdown-menu dropdown-menu-right navbar-dropdown preview-list"
+                                <div class="dropdown-menu-right dropdown-menu navbar-dropdown preview-list"
                                     aria-labelledby="messageDropdown">
-                                    <p class="mb-0 font-weight-normal float-left dropdown-header">Messages</p>
+                                    <p class="float-left mb-0 font-weight-normal dropdown-header">Messages</p>
                                     <a class="dropdown-item preview-item">
                                         <div class="preview-thumbnail">
                                             <img src="images/faces/face4.jpg" alt="image" class="profile-pic">
                                         </div>
-                                        <div class="preview-item-content flex-grow">
-                                            <h6 class="preview-subject ellipsis font-weight-normal">David Grey
+                                        <div class="flex-grow preview-item-content">
+                                            <h6 class="font-weight-normal preview-subject ellipsis">David Grey
                                             </h6>
-                                            <p class="font-weight-light small-text text-muted mb-0">
+                                            <p class="mb-0 font-weight-light text-muted small-text">
                                                 The meeting is cancelled
                                             </p>
                                         </div>
@@ -281,10 +281,10 @@
                                         <div class="preview-thumbnail">
                                             <img src="images/faces/face2.jpg" alt="image" class="profile-pic">
                                         </div>
-                                        <div class="preview-item-content flex-grow">
-                                            <h6 class="preview-subject ellipsis font-weight-normal">Tim Cook
+                                        <div class="flex-grow preview-item-content">
+                                            <h6 class="font-weight-normal preview-subject ellipsis">Tim Cook
                                             </h6>
-                                            <p class="font-weight-light small-text text-muted mb-0">
+                                            <p class="mb-0 font-weight-light text-muted small-text">
                                                 New product launch
                                             </p>
                                         </div>
@@ -293,10 +293,10 @@
                                         <div class="preview-thumbnail">
                                             <img src="images/faces/face3.jpg" alt="image" class="profile-pic">
                                         </div>
-                                        <div class="preview-item-content flex-grow">
-                                            <h6 class="preview-subject ellipsis font-weight-normal"> Johnson
+                                        <div class="flex-grow preview-item-content">
+                                            <h6 class="font-weight-normal preview-subject ellipsis"> Johnson
                                             </h6>
-                                            <p class="font-weight-light small-text text-muted mb-0">
+                                            <p class="mb-0 font-weight-light text-muted small-text">
                                                 Upcoming board meeting
                                             </p>
                                         </div>
@@ -304,10 +304,10 @@
                                 </div>
                             </li>
                             <li class="nav-item dropdown">
-                                <a href="#" class="nav-link count-indicator "><i
+                                <a href="#" class="nav-link count-indicator"><i
                                         class="mdi mdi-message-reply-text"></i></a>
                             </li>
-                            <li class="nav-item nav-search d-none d-lg-block ms-3">
+                            <li class="d-lg-block ms-3 nav-item nav-search d-none">
                                 <div class="input-group">
                                     <div class="input-group-prepend">
                                         <span class="input-group-text" id="search">
@@ -319,38 +319,38 @@
                                 </div>
                             </li>
                         </ul>
-                        <div class="text-center navbar-brand-wrapper d-flex align-items-center justify-content-center">
+                        <div class="d-flex align-items-center justify-content-center text-center navbar-brand-wrapper">
                             <a class="navbar-brand brand-logo" href="index.html"><img
                                     src="{{ url('images/wemis.png') }}" alt="logo" /></a>
                             <a class="navbar-brand brand-logo-mini" href="index.html"><img
                                     src="{{ url('images/wemis.png') }}" alt="logo" /></a>
                         </div>
-                        <ul class="navbar-nav navbar-nav-right">
-                            <li class="nav-item dropdown  d-lg-flex d-none">
+                        <ul class="navbar-nav-right navbar-nav">
+                            <li class="d-lg-flex nav-item dropdown d-none">
                                 <button type="button" class="btn btn-inverse-primary btn-sm">Product </button>
                             </li>
-                            <li class="nav-item dropdown d-lg-flex d-none">
+                            <li class="d-lg-flex nav-item dropdown d-none">
                                 <a class="dropdown-toggle show-dropdown-arrow btn btn-inverse-primary btn-sm"
                                     id="nreportDropdown" href="#" data-bs-toggle="dropdown">
                                     <i class="mdi mdi-wallet"></i> Wallet
                                 </a>
-                                <div class="dropdown-menu dropdown-menu-right navbar-dropdown preview-list"
+                                <div class="dropdown-menu-right dropdown-menu navbar-dropdown preview-list"
                                     aria-labelledby="nreportDropdown">
-                                    <p class="mb-0 font-weight-medium float-left dropdown-header">Wallet</p>
+                                    <p class="float-left mb-0 font-weight-medium dropdown-header">Wallet</p>
                                     <a class="dropdown-item">
-                                        <i class="mdi mdi-file-pdf text-primary"></i>
+                                        <i class="text-primary mdi mdi-file-pdf"></i>
                                         Wallet Dashboard
                                     </a>
                                     <a class="dropdown-item">
-                                        <i class="mdi mdi-file-excel text-primary"></i>
+                                        <i class="text-primary mdi mdi-file-excel"></i>
                                         Tranxation List
                                     </a>
                                 </div>
                             </li>
-                            <li class="nav-item dropdown d-lg-flex d-none">
+                            <li class="d-lg-flex nav-item dropdown d-none">
                                 <a class="dropdown-item" href="#" data-bs-toggle="modal"
                                     data-bs-target="#settingsModalRto">
-                                    <i class="mdi mdi-settings text-primary"></i>
+                                    <i class="text-primary mdi mdi-settings"></i>
                                     Settings
                                 </a>
                             </li>
@@ -361,23 +361,23 @@
                                     <span class="online-status"></span>
                                     <img src="{{ url('images/faces/face28.png') }}" alt="profile" />
                                 </a>
-                                <div class="dropdown-menu dropdown-menu-right navbar-dropdown"
+                                <div class="dropdown-menu-right dropdown-menu navbar-dropdown"
                                     aria-labelledby="profileDropdown">
                                     <a class="dropdown-item" href="#" data-bs-toggle="modal"
                                         data-bs-target="#settingsModalRto">
-                                        <i class="mdi mdi-settings text-primary"></i>
+                                        <i class="text-primary mdi mdi-settings"></i>
                                         Settings
                                     </a>
                                     <a class="dropdown-item" href="{{ route('logout') }}" onclick="event.preventDefault();
 					                     document.getElementById('logout-form').submit();">
-                                        <i class="mdi mdi-logout me-2 text-primary"></i> Signout </a>
+                                        <i class="me-2 text-primary mdi mdi-logout"></i> Signout </a>
                                     <form id="logout-form" action="{{ route('logout') }}" method="POST" class="d-none">
                                         @csrf
                                     </form>
                                 </div>
                             </li>
                         </ul>
-                        <button class="navbar-toggler navbar-toggler-right d-lg-none align-self-center" type="button"
+                        <button class="navbar-toggler-right align-self-center navbar-toggler d-lg-none" type="button"
                             data-toggle="horizontal-menu-toggle">
                             <span class="mdi mdi-menu"></span>
                         </button>
@@ -397,7 +397,7 @@
                         <ul class="navbar-nav">
                             <!-- Dashboard -->
                             <li class="nav-item">
-                                <a class="nav-link" href="{{ route('manufacturer.dashboard') }}">
+                                <a class="nav-link" href="{{ route('distributor.dashboard') }}">
                                     <div class="nav-icon">
                                         <i class="fas fa-gauge-high"></i>
                                     </div>
@@ -417,27 +417,27 @@
                                 <ul class="dropdown-menu">
                                     <li>
                                         <a class="dropdown-item" href="{{route('distributor.barcode')}}">
-                                            <i class="fas fa-list-check me-2"></i> Barcode
+                                            <i class="me-2 fa-list-check fas"></i> Barcode
                                         </a>
                                     </li>
                                     <li>
                                         <a class="dropdown-item" href="{{route('distributor.allocate.barcode')}}">
-                                            <i class="fas fa-share-nodes me-2"></i>Allocate Barcode
+                                            <i class="me-2 fas fa-share-nodes"></i>Allocate Barcode
                                         </a>
                                     </li>
                                     <li>
                                         <a class="dropdown-item" href="#">
-                                            <i class="fas fa-rotate-left me-2"></i>Rollback Barcode
+                                            <i class="me-2 fa-rotate-left fas"></i>Rollback Barcode
                                         </a>
                                     </li>
                                     <li>
                                         <a class="dropdown-item" href="#">
-                                            <i class="fas fa-arrows-rotate me-2"></i>Renewal Allocation
+                                            <i class="me-2 fas fa-arrows-rotate"></i>Renewal Allocation
                                         </a>
                                     </li>
                                     {{-- <li>
                                         <a class="dropdown-item" href="#">
-                                            <i class="fas fa-box-open me-2"></i>Manage Accessories
+                                            <i class="me-2 fas fa-box-open"></i>Manage Accessories
                                         </a>
                                     </li> --}}
                                 </ul>
@@ -455,7 +455,7 @@
                                 <ul class="dropdown-menu">
                                     <li>
                                         <a class="dropdown-item" href="{{route('subscriptions')}}">
-                                            <i class="fas fa-file-invoice-dollar me-2"></i>Subscription
+                                            <i class="me-2 fas fa-file-invoice-dollar"></i>Subscription
                                         </a>
                                     </li>
                                 </ul>
@@ -473,12 +473,12 @@
                                 <ul class="dropdown-menu">
                                     <li>
                                         <a class="dropdown-item" href="{{ route('dealers') }}">
-                                            <i class="fas fa-store me-2"></i>Dealers
+                                            <i class="me-2 fas fa-store"></i>Dealers
                                         </a>
                                     </li>
                                     <li>
                                         <a class="dropdown-item" href="{{ route('technicians') }}">
-                                            <i class="fas fa-user-gear me-2"></i>Technicians
+                                            <i class="me-2 fas fa-user-gear"></i>Technicians
                                         </a>
                                     </li>
                                 </ul>
@@ -496,7 +496,7 @@
                                 <ul class="dropdown-menu">
                                     <li>
                                         <a class="dropdown-item" href="{{route('map.device')}}">
-                                            <i class="fas fa-map-location-dot me-2"></i>Map Device
+                                            <i class="me-2 fas fa-map-location-dot"></i>Map Device
                                         </a>
                                     </li>
                                 </ul>
@@ -516,11 +516,11 @@
                 <!-- partial:partials/_footer.html -->
                 <footer class="footer" style="background-color: #260950">
                     <div class="footer-wrap" style="background-color: #260950">
-                        <div class="d-sm-flex justify-content-center justify-content-sm-between">
-                            <span class="text-muted text-center text-sm-left d-block d-sm-inline-block">Copyright © <a
+                        <div class="d-sm-flex justify-content-sm-between justify-content-center">
+                            <span class="d-block d-sm-inline-block text-muted text-sm-left text-center">Copyright © <a
                                     href="" target="_blank">Wemis
                                 </a> 2025</span>
-                            {{-- <span class="float-none float-sm-right d-block mt-1 mt-sm-0 text-center">Only the best
+                            {{-- <span class="d-block float-sm-right float-none mt-1 mt-sm-0 text-center">Only the best
                                 <a href="https://www.bootstrapdash.com/" target="_blank"> Bootstrap dashboard </a>
                                 templates</span> --}}
                         </div>
@@ -544,7 +544,7 @@
                     <div class="list-group">
                         <a href="{{ route('mgf.setting') }}"
                             class="list-group-item list-group-item-action d-flex align-items-center">
-                            <i class="mdi mdi-car-settings me-2 text-primary"></i> RTO Setting
+                            <i class="me-2 text-primary mdi mdi-car-settings"></i> RTO Setting
                         </a>
                     </div>
                 </div>

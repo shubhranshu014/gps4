@@ -357,7 +357,7 @@
                             <li class="nav-item nav-profile dropdown">
                                 <a class="nav-link dropdown-toggle" href="#" data-bs-toggle="dropdown"
                                     id="profileDropdown">
-                                    <span class="nav-profile-name">{{ auth('dealer')->user()->name }}</span>
+                                    <span class="nav-profile-name">{{ auth('technician')->user()->name }}</span>
                                     <span class="online-status"></span>
                                     <img src="{{ url('images/faces/face28.png') }}" alt="profile" />
                                 </a>
@@ -397,7 +397,7 @@
                         <ul class="navbar-nav">
                             <!-- Dashboard -->
                             <li class="nav-item">
-                                <a class="nav-link" href="{{ route('dealer.dashboard') }}">
+                                <a class="nav-link" href="{{ route('technician.dashboard') }}">
                                     <div class="nav-icon">
                                         <i class="fas fa-gauge-high"></i>
                                     </div>
@@ -406,7 +406,7 @@
                             </li>
 
                             <!-- Barcode Dropdown -->
-                            <li class="nav-item dropdown">
+                            <!-- <li class="nav-item dropdown">
                                 <a class="nav-link dropdown-toggle" href="#" role="button" data-bs-toggle="dropdown">
                                     <div class="nav-icon">
                                         <i class="fas fa-barcode"></i>
@@ -441,7 +441,7 @@
                                         </a>
                                     </li> --}}
                                 </ul>
-                            </li>
+                            </li> -->
 
                             <!-- Subscription Dropdown -->
                             {{-- <li class="nav-item dropdown">
@@ -462,7 +462,7 @@
                             </li> --}}
 
                             <!-- Members Dropdown -->
-                            <li class="nav-item dropdown">
+                            <!-- <li class="nav-item dropdown">
                                 <a class="nav-link dropdown-toggle" href="#" role="button" data-bs-toggle="dropdown">
                                     <div class="nav-icon">
                                         <i class="fas fa-id-badge"></i>
@@ -487,7 +487,7 @@
                                         </a>
                                     </li>
                                 </ul>
-                            </li>
+                            </li> -->
 
                             <!-- Manage Device Dropdown -->
                             <li class="nav-item dropdown">

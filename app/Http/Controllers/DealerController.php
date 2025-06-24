@@ -12,21 +12,22 @@ class DealerController extends Controller
     public function index()
     {
         if (Auth::guard('manufacturer')->check()) {
+            // Manufacturer logged in
             $distributor = Distributor::where("manuf_id", auth('manufacturer')->user()->id)->get();
-
-            // Now get all the dealers associated with these distributors
-            $dealerIds = $distributor->pluck('id'); // Extract distributor IDs
-
-            // Use whereIn to fetch all dealers that belong to these distributors
+            $dealerIds = $distributor->pluck('id');
             $dealers = Dealer::with('distributor')->whereIn('distributor_id', $dealerIds)->get();
             $layouts = 'layouts.manufacturer';
-            return view("backend.dealer.index")->with(compact('distributor', 'dealers', 'layouts'));
-        } else {
-            $layouts = 'layouts.distributor';
-            $dealers = Dealer::where('distributor_id', Auth()->user()->id)->get();
-            return view("backend.dealer.index")->with(compact('dealers','layouts'));
+            return view("backend.dealer.index", compact('distributor', 'dealers', 'layouts'));
 
+        } elseif (Auth::guard('distributor')->check()) {
+            // Distributor logged in
+            $distributorId = auth('distributor')->user()->id;
+            $dealers = Dealer::with('distributor')->where('distributor_id', $distributorId)->get();
+            $layouts = 'layouts.distributor';
+            return view("backend.dealer.index", compact('dealers', 'layouts'));
         }
+
+        abort(403, 'Unauthorized'); // Optional safety fallback
 
 
     }

@@ -211,14 +211,14 @@
 <body>
     <div class="container-scroller">
         <div class="container-fluid page-body-wrapper full-page-wrapper">
-            <div class="content-wrapper d-flex align-items-stretch auth auth-img-bg">
-                <div class="row flex-grow">
-                    <div class="col-lg-6 d-flex align-items-center justify-content-center">
-                        <div class="auth-form-transparent text-left p-3">
-                            <div class="brand-logo text-center">
+            <div class="d-flex align-items-stretch content-wrapper auth auth-img-bg">
+                <div class="flex-grow row">
+                    <div class="d-flex align-items-center justify-content-center col-lg-6">
+                        <div class="p-3 text-left auth-form-transparent">
+                            <div class="text-center brand-logo">
                                 <img src="../../images/wemis.png" alt="Wemis Logo">
                             </div>
-                            <div class="welcome-message text-center">
+                            <div class="text-center welcome-message">
                                 <h4>Welcome back!</h4>
                                 <h6 class="font-weight-light">Happy to see you again!</h6>
                             </div>
@@ -234,7 +234,7 @@
                                 <div class="form-group">
                                     <label for="email">Email Address</label>
                                     <div class="position-relative">
-                                        <i class="mdi mdi-email-outline input-icon"></i>
+                                        <i class="mdi-email-outline mdi input-icon"></i>
                                         <input id="email" type="email"
                                             class="form-control form-control-lg input-with-icon @error('email') is-invalid @enderror"
                                             name="email" value="{{ old('email') }}" autocomplete="email" autofocus
@@ -249,18 +249,18 @@
                                 <div class="form-group">
                                     <label for="password">Password</label>
                                     <div class="position-relative password-container">
-                                        <i class="mdi mdi-lock-outline input-icon"></i>
+                                        <i class="mdi-lock-outline mdi input-icon"></i>
                                         <input type="password" name="password"
                                             class="form-control form-control-lg input-with-icon" id="password"
                                             placeholder="••••••••">
                                         <i class="fa-solid fa-eye" id="togglePassword"></i>
                                     </div>
                                 </div>
-                                <div class="my-3 d-flex  align-items-center">
+                                <div class="d-flex align-items-center my-3">
                                     <a href="#" class="auth-link">Forgot password?</a>
                                 </div>
                                 <div class="my-4">
-                                    <button class="btn btn-block btn-sm btn-login font-weight-medium text-white"
+                                    <button class="btn-block font-weight-medium text-white btn btn-sm btn-login"
                                         type="submit">
                                         LOGIN
                                     </button>
@@ -269,32 +269,32 @@
                                 <div class="divider">
                                     <span class="divider-text">OR</span>
                                 </div>
-                                <div class="text-center my-3">
-                                    <button type="button" class="btn btn-outline-secondary btn-icon-text mr-2">
+                                <div class="my-3 text-center">
+                                    <button type="button" class="mr-2 btn-outline-secondary btn btn-icon-text">
                                         <i class="mdi mdi-google"></i> Google
                                     </button>
-                                    <button type="button" class="btn btn-outline-secondary btn-icon-text">
+                                    <button type="button" class="btn-outline-secondary btn btn-icon-text">
                                         <i class="mdi mdi-microsoft"></i> Microsoft
                                     </button>
                                 </div>
                                 -->
-                                {{-- <div class="text-center mt-4">
+                                {{-- <div class="mt-4 text-center">
                                     <span class="text-muted">Don't have an account?</span>
-                                    <a href="#" class="auth-link ml-2">Sign up</a>
+                                    <a href="#" class="ml-2 auth-link">Sign up</a>
                                 </div> --}}
                             </form>
                         </div>
                     </div>
-                    <div class="col-lg-6 login-half-bg d-flex flex-row">
-                        <div class="d-flex flex-column justify-content-center align-items-center text-center w-100">
+                    <div class="d-flex flex-row col-lg-6 login-half-bg">
+                        <div class="d-flex flex-column align-items-center justify-content-center w-100 text-center">
                             {{-- <h2 class="mb-4" style="font-weight: 600;color:#f06508">Wemis Management System</h2>
-                            <p class="text-white mb-5" style="max-width: 80%; opacity: 0.9;">
+                            <p class="mb-5 text-white" style="max-width: 80%; opacity: 0.9;">
                                 Streamline your workflow with our comprehensive management solution.
                             </p> --}}
                             {{-- <img src="../../images/auth-illustration.svg" alt="Auth Illustration"
                                 style="max-width: 70%;"> --}}
                         </div>
-                        <p class="copyright text-white font-weight-medium text-center">
+                        <p class="font-weight-medium text-white text-center copyright">
                             Copyright &copy; 2025 All rights reserved.
                         </p>
                     </div>
